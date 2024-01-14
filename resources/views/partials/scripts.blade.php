@@ -2,11 +2,11 @@
     <!-- End custom js for this page-->
     @if(\Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_enabled') && \Osiset\ShopifyApp\Util::useNativeAppBridge())
         <script src="{{config('shopify-app.appbridge_cdn_url') ?? 'https://unpkg.com'}}/@shopify/app-bridge{{ \Osiset\ShopifyApp\Util::getShopifyConfig('appbridge_version') ? '@'.config('shopify-app.appbridge_version') : '' }}"></script>
-        <script
+        <script>
             @if(\Osiset\ShopifyApp\Util::getShopifyConfig('turbo_enabled'))
                 data-turbolinks-eval="false"
             @endif
-        >
+        
             var AppBridge = window['app-bridge'];
             var actions = AppBridge.actions;
             var utils = AppBridge.utilities;

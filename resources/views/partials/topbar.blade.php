@@ -9,17 +9,10 @@
                 </svg>
             </div>
             <p class="py-2 font-medium">
-                Shopify + Laravel - FAQ Application
+            Translator APP by Muminur
             </p>
         </div>
-        {{-- <a target="_blank" href="https://github.com/Ostad-Shopify-App-Development/ostad-shopify-laravel-batch-1"
-            class="inline-block w-full mt-3 py-2 px-3 text-center text-indigo-600 font-medium bg-white duration-150 hover:bg-gray-100 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
-            Source Code
-        </a>
-        <a href="{{ URL::tokenRoute('group.index') }}"
-            class="inline-block w-full mt-3 py-2 px-3 text-center text-indigo-600 font-medium bg-white duration-150 hover:bg-gray-100 active:bg-gray-200 rounded-lg sm:w-auto sm:mt-0 sm:text-sm">
-            Group
-        </a> --}}
+
         <ul class="flex space-x-5">
             <li>
                 <a href="{{ URL::tokenRoute('home') }}">
@@ -27,30 +20,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{ URL::tokenRoute('group.index') }}">
-                    Groups
-                </a>
-            </li>
-            <li>
-                <a href="{{ URL::tokenRoute('group.faqs', ['groupid' => 1]) }}">
-                    FAQs
-                </a>
-            </li>
-            <li>
-                <a href="{{ URL::tokenRoute('ui.components', ['groupid' => 1]) }}">
-                    UI Components
-                </a>
-            </li>
-            <li>
-                <a target="_blank"
-                   href="https://github.com/Ostad-Shopify-App-Development/ostad-shopify-laravel-batch-1">
-                    Source Code
-                </a>
-            </li>
-            <li>
                 <a
                    href="{{ URL::tokenRoute('setting.index') }}">
-                    Settings
+                    Setup Guide
                 </a>
             </li>
 

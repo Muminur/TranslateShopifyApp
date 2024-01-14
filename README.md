@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Troubleshooting: Osiset\ShopifyApp\Exceptions\ApiException
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+If you encounter the error `Osiset\ShopifyApp\Exceptions\ApiException` on PHP 8.2.12 at 10.30.1, follow these steps:
 
-## About Laravel
+1. Open the following URL in your browser to pass the shop URL:
+https://admin.shopify.com/store/YOURSTORENAME/apps/YOURAPPNAME/authenticate/token?shop=YOURSTORENAME.myshopify.com
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+2. Install NPM and Ruby commands:
+```bash
+winget install RubyInstallerTeam.Ruby.3.2
+winget install RubyInstallerTeam.RubyWithDevKit.3.2
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+ridk install
+Navigate to the app_extension folder under your app folder and install dependencies mentioned in package.json:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+  
+"dependencies": {
+  "@shopify/app": "^3.52",
+  "@shopify/cli": "^3.52"
+}
+Run:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+  
+npm install
+Run the following command to generate the extension:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+  
+npm run scaffold
+Shortcuts available in package.json:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+  
+"scripts": {
+  "shopify": "shopify",
+  "build": "shopify app build",
+  "dev": "shopify app dev",
+  "info": "shopify app info",
+  "scaffold": "shopify app generate extension",
+  "deploy": "shopify app deploy"
+}
+Press any key to login, select "NO" to connect to an existing app, choose your app, provide a configuration file name, and select "Theme App Extension."
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+If "Theme app extension" is grayed out, delete the extension folder from your app_extension folder.
 
-## Code of Conduct
+To preview the extension, run:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+  
+npm run dev
+Select the store name. Note the provided URLs for setup.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If changes are not reflected on localhost or live store, edit the database table faq or group store ID and save.
 
-## License
+App Embed Block
+Add new files global.css & global.js in the assets folder.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Add a new file global_script.liquid in the blocks folder with the following code:
+
+
+  
+{% schema %}
+{
+  "name": "Global Script",
+  "target": "body",
+  "stylesheet": "global.css",
+  "javascript": "global.js",
+  "settings": []
+}
+{% endschema %}
+To add a new app embed, deploy it with the command:
+
+
+  
+# Run this command for deployment
+npm run deploy
+
+  
